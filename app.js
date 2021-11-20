@@ -8,7 +8,7 @@
 
 //checks if we are running in the production environment or locally on our computer
 //tells our applicatio to look into .env if are not running in the production environment
-if(process.env.NODE_ENV !== "production"){
+if(process.env.NODE_ENV != "production"){
     require("dotenv").config()
 }
 
@@ -16,7 +16,11 @@ const express = require("express")
 const server = express()
 const expressLayouts = require("express-ejs-layouts")
 const indexRouter = require("./routes/index") //import the route 'index' that we created
+const authorRouter = require("./routes/authors") 
+const bookRouter = require("./routes/books") 
 const mongoose = require("mongoose") 
+
+//const bodyParser = require("body-parser")
 
 //process.env.DATAASE_URL , makes mongoo dependent on a url which is going to come from our environment variables
 //useNewUrlParser: true , options for how we want set up mongoDB inside of our application
@@ -34,6 +38,12 @@ server.set("layout", "layouts/layout")
 server.use(expressLayouts) //tells the express applcation that we are going to use expressLayouts
 server.use(express.static("public")) //tells express where our public files such as style shit,js of our images is going to be
 server.use("/", indexRouter) //creates a root "/" and tells indexRouter to handle that root, server uses it
+server.use("/authors", authorRouter)
+server.use("/books", bookRouter)
+
+server.use(express.json())
+server.use(express.urlencoded({limit: "10mb", extended: false}))
+
 
 //sets up our server to listen on the port that we want it to
 //server.listen takes a single function that we will if there is an error potentially

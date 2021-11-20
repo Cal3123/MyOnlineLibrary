@@ -7,10 +7,12 @@
     <title>Mybrary</title>
 </head>
 <body>
-    //put all the code tha goes inside of our application before and after every single page
+    <comment: puts all the code tha goes inside of our application before and after every single page> 
     Before
     <br> 
-    <%- body %> //imports every single one of our pages right in here  
+    <%- include("../partials/header.ejs")%>
+    <%- include("../partials/errorMessage.ejs")%>
+    <%- body %> <this line imports every single one of our pages right in here >
     <br>
     After
 </body>
