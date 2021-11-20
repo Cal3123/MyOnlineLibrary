@@ -16,6 +16,11 @@ const uploadPath = path.join("public" + Book.coverImageBasePath )//uploads/bookC
 const multer = require("multer")
 //an array that has all the different image types that we accept
 const imageMimeTypes =["images/jpeg","imagees/png", "images/gif"]
+
+const bodyParser = require('body-parser')
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 //upload helps us to configure multer in order to be used in our project
 const upload = multer({
   //test us were the upload path is going to be inside of our project
@@ -81,7 +86,7 @@ router.get("/new", async ( req, res) => {
 //upload.single tells our multer that we are uploading a single file with name of cover
 //multer is going to do all the work behind the scenes to create that file and
 //upload it onto our server and put it in a correct folder
-router.post('/', upload.single('cover'), async (req, res) => {
+router.post('/', urlencodedParser, upload.single('cover'), async (req, res) => {
   //adds a variable to our request which is going to be called file
   //checks if the file is not equal to null then gets the filename but if it is then return null
   const fileName = req.file != null ? req.file.filename : null

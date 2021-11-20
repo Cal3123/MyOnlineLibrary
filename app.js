@@ -19,8 +19,8 @@ const indexRouter = require("./routes/index") //import the route 'index' that we
 const authorRouter = require("./routes/authors") 
 const bookRouter = require("./routes/books") 
 const mongoose = require("mongoose") 
-
-//const bodyParser = require("body-parser")
+ 
+const bodyParser = require("body-parser")
 
 //process.env.DATAASE_URL , makes mongoo dependent on a url which is going to come from our environment variables
 //useNewUrlParser: true , options for how we want set up mongoDB inside of our application
@@ -41,8 +41,9 @@ server.use("/", indexRouter) //creates a root "/" and tells indexRouter to handl
 server.use("/authors", authorRouter)
 server.use("/books", bookRouter)
 
-server.use(express.json())
-server.use(express.urlencoded({limit: "10mb", extended: false}))
+
+server.use(bodyParser.urlencoded({ extended: false}))
+server.use(express.urlencoded({limit: "10mb", extended: true}))
 
 
 //sets up our server to listen on the port that we want it to

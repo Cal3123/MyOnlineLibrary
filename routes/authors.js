@@ -2,6 +2,10 @@ const express = require("express")
 const router = express.Router() //creates the router portion of the express variable
 const Author = require("../models/author")
 
+const bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 //All Authors Route
 router.get('/', async (req, res) => {
   let searchOptions= {}
@@ -25,15 +29,16 @@ router.get("/new", ( req, res) => {
 })
 
 //Create Author Route
-router.post("/", async ( req, res) => {
-    console.log(req.body)
+router.post("/", urlencodedParser , async ( req, res) => {
+   // console.log(req.body)
     const author = new Author({
         name: req.body.name
     }) 
 
     try {
-        const newAuthor = await author.create()
-        res.redirect(`authors/${newAuthor.id}`)
+        const newAuthor = await author.save()
+        //res.redirect(`authors/${newAuthor.id}`)
+        res.redirect(`authors`)
       } catch {
         res.render('authors/new', {
           author: author,
