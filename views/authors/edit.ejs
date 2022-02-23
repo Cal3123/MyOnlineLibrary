@@ -1,0 +1,10 @@
+<h2>Edit Author</h2>
+<comment: change from action to have the id at the end. Ovverides POST to use PUT in arthors route>
+<form action="/authors/<%= author.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+  <comment: cancel automatically brings us back to the arthor show page by creating a 
+  url using the selected arthor's id>
+  <a href="/authors/<%= author.id %>">Cancel</a>
+  <comment: type submit is handled by our form action> 
+  <button type="submit">Update</button>
+</form>

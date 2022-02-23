@@ -14,6 +14,7 @@ if(process.env.NODE_ENV != "production"){
 
 const express = require("express")
 const server = express()
+const methodOverride = require('method-override') //allows us to use delete and put request in our routes
 const expressLayouts = require("express-ejs-layouts")
 const indexRouter = require("./routes/index") //import the route 'index' that we created
 const authorRouter = require("./routes/authors") 
@@ -21,6 +22,11 @@ const bookRouter = require("./routes/books")
 const mongoose = require("mongoose") 
  
 const bodyParser = require("body-parser")
+
+//use _method becsause this unlikely to be a name of an input on your form. Beacuse this is going to send as if it was 
+//an input on  your form of _method and this were you going to put either the put or delete in your form.
+//We will see that when we start creating our edit and delete form
+server.use(methodOverride("_method"))
 
 //process.env.DATAASE_URL , makes mongoo dependent on a url which is going to come from our environment variables
 //useNewUrlParser: true , options for how we want set up mongoDB inside of our application
@@ -42,9 +48,10 @@ server.use("/authors", authorRouter)
 server.use("/books", bookRouter)
 
 
-server.use(bodyParser.urlencoded({ extended: false}))
-server.use(express.urlencoded({limit: "10mb", extended: true}))
-
+//server.use(bodyParser.urlencoded({ extended: false}))
+server.use(bodyParser.json({ limit: "100mb"}))
+//server.use(express.urlencoded({limit: "100mb", extended: true}))
+server.use(bodyParser.urlencoded({limit: "100mb", extended: true}))
 
 //sets up our server to listen on the port that we want it to
 //server.listen takes a single function that we will if there is an error potentially

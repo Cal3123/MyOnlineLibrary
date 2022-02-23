@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router() //creates the router portion of the express variable
 const Author = require("../models/author")
+const Book = require("../models/book")
 
 const bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
@@ -37,15 +38,97 @@ router.post("/", urlencodedParser , async ( req, res) => {
 
     try {
         const newAuthor = await author.save()
-        //res.redirect(`authors/${newAuthor.id}`)
-        res.redirect(`authors`)
+        res.redirect(`authors/${newAuthor.id}`)
       } catch {
         res.render('authors/new', {
           author: author,
           errorMessage: 'Error creating Author'
         })
       }
+})
 
+//For SHOWING BOOKS by arthor page our user. '/:id' signifies that after this colon there is going to be a variable 
+//called id that is going to be passed along with our request
+//NOTE: get('/:id',...) shold come after get('/new', ..) so that our server does not mistake the later for the former
+router.get('/:id', async (req, res) => {
+  try {
+    const author = await Author.findById(req.params.id)
+    //we want to find books by a particular author above using the arthor's id
+    //limit(6).exec() executes six books by the author at a time
+    const books = await Book.find({ author: author.id }).limit(6).exec()
+    res.render('authors/show', {
+      author: author,
+      booksByAuthor: books
+    })
+  } catch {
+    //render us back to th home page if we fail to get either author or books
+    res.redirect('/')
+  }
+})
+
+//for editing id or author
+//In order to get the arthor from our database, we will use the async function
+router.get('/:id/edit', async (req, res) => {
+  try {
+    //findById is a method built into the mongoose library 
+    const author = await Author.findById(req.params.id)
+    res.render('authors/edit', { author: author })
+  } catch {
+    res.redirect('/authors')
+  }
+})
+
+//From a browser you can only make a post and get request. So we have no way from the browser to say put or delete.
+//So we need to install a library thagt allows us to make this put and delete request ~ npm i method override
+//It allows us to take a post form, sent that to our server with a special parameter that tell us if we a doing a put 
+//or delete request and our server will be smart enough to actually call the correct router here for delete or put
+//based on that specific parameter
+
+//this is an update route. Updates arthor. put essentially tells us that this is going to be an edit route
+router.put('/:id', async (req, res) => {
+  let author
+  try {
+    //gets the id from the url. searches for it in mongoose database to find arthor
+    author = await Author.findById(req.params.id)
+    //changes the name to whatever new name that the user entered in view
+    author.name = req.body.name
+    //waits till the above functions is done then saves
+    await author.save()
+    //after that it redirects to show arthor
+    res.redirect(`/authors/${author.id}`)
+  } catch {
+    //if the arthor wasn't found then it redirects it back to the homepage
+    if (author == null) {
+      res.redirect('/')
+    } else {
+      //if the arthor does exist and form some reason it could not update name then it renders 
+      //the error message below at our edit page
+      res.render('authors/edit', {
+        author: author,
+        errorMessage: 'Error updating Author'
+      })
+    }
+  }
+})
+
+//deletes arthor. /:id is there for us to know what resources to delete
+//Never use  a get method to perform delete
+router.delete('/:id', async (req, res) => {
+  let author
+  try {
+    author = await Author.findById(req.params.id)
+    //the remove method is a method in mongoose db database. 
+    await author.remove()
+    //redirects you to the arthor page so that we can see all the available arthor page after we delete
+    res.redirect('/authors')
+  } catch {
+    if (author == null) {
+      res.redirect('/')
+    } else {
+      //if we fail removing the arthor, we will redirect back to the arthor
+      res.redirect(`/authors/${author.id}`)
+    }
+  }
 })
 
 //exportsa information from this file, exports router

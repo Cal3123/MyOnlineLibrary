@@ -1,0 +1,8 @@
+<comment: append down the actual method we want to handle this action. this ?_method is essentially 
+defining a query parameter and we will set it equal to delete >
+<comment: When ou server gets this request, it is going to know that it is a POST request but then it
+is going to see _method which will inform it  that the DELETE method or request should override the POST request> 
+    <form method="POST" action="/authors/<%= url%>?_method=DELETE">
+        <comment: this is inside of a form so that we can use the delete method instead of a get method> 
+        <button type ="submit"> Delete</button>>
+    </form>
