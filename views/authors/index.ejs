@@ -1,4 +1,4 @@
-<h2>Search Authors</h2>
+<h2 class="page-header">Search Authors</h2>
 <form action="/authors" method = "GET">
 <label>Name</label >
 <input type ="text" name = "name" value="<%= searchOptions.name%>">
@@ -7,11 +7,14 @@
 <br>  
  <% authors.forEach(author => { %>
     <div><%=author.name %></div>
-    <comment: the view link passes the id of the author and input it in as the end of the url> 
-    <a href="/authors/<%= author.id %>">View</a>
-    <comment: the edit link only appends the url with /edit> 
-    <a href="/authors/<%= author.id %>/edit">Edit</a>
-    <comment: inlcudes partials/deleteForm from partials folder. We use string interpolation for 
-    becuase this is going to run on our server  and we want it to be undertandable to our server> 
-    <%- include('../partials/deleteForm', { url: `/authors/${author.id}` }) %>
+    <comment: btn-row spaces out the buttons so that they look correct on the frontend> 
+    <div class="btn-row">
+        <comment: the view link passes the id of the author and input it in as the end of the url> 
+        <a class = "btn btn-primary" href="/authors/<%= author.id %>">View</a>
+        <comment: the edit link only appends the url with /edit> 
+        <a class = "btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+        <comment: inlcudes partials/deleteForm from partials folder. We use string interpolation for 
+        becuase this is going to run on our server  and we want it to be undertandable to our server> 
+        <%- include('../partials/deleteForm', { url: `/authors/${author.id}` }) %>
+    </div>
 <% }) %>

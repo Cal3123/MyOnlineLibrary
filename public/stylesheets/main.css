@@ -1,0 +1,48 @@
+/*Now in order to include all these differrent fonts from /shared/font.css inside of our project we create this main.css file
+and then inside of here we import all these different styles using the four below import statements
+*/
+@import 'shared/variables.css';
+@import 'shared/fonts.css';
+@import 'shared/header.css';
+@import 'shared/buttons.css';
+
+:root {
+  font-family: 'Gotham Rounded'; /*We include the font that we imported from the css file in shared folder here*/
+  font-size: 20px; /*We bump up the font size a little bit so that it is easier to see*/
+  /*Makes the deafault color to be trthe color determined by the vafriable --color-text-light*/
+  color: var(--color-text-light);
+}
+/*nice little helper which we are going to select all before element and we want select all after elements as well*/
+*, *::before, *::after {
+    /*We want the box sizing of these elemenst we-have-selected to be border-box*/
+    /*THis will making sizing of our weights and height much easier if we have padding or margin
+    on these elements*/
+  box-sizing: border-box;
+}
+/*Styles our background to have a nice blue color background*/
+/*To do that, we use our body element and we apply background to it*/
+/*linear-gradient enables you to have a slightly darker color on left to slightly lighter right */
+/*--color-background-dark and --color-background-light are variables you will use to define the colors*/
+body {
+  background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light));
+}
+/*Create a container  class that wraps all of our content */  
+.container {
+  max-width: 1200px;
+  /*adds equal margin to the left and right of our container so that it is always centered*/
+  margin: auto;
+  /*IN this way our content never touches the botom of our screen.
+  It will be 3rem away from th bottom*/
+  margin-bottom: 3rem;
+}
+/*Creates a separate inisde container  class that wraps all of the contents inside .container so that it is slightly indented 
+on the left and right  */
+.inner-container {
+  /*Below means that margin is zero on the top and bottom. and 2rem on the left and right*/
+  margin: 0 2rem;
+}
+/*This is a class that we will add to all of our page headers e.g "Recently Added text"*/
+.page-header {
+  font-size: 2rem;
+  font-weight: 500;
+}

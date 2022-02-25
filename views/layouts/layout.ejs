@@ -26,16 +26,24 @@
     <comment: Below is our own script tag which will allow us to setup the filepond library. We create that inside 
     a folder called javascript, and call it fileupload.js>
     <script defer src="/javascripts/fileUpload.js"></script>
+    <coomment: this link tag includes main.css found in href route inside our layout view. rel names the link tag>
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <title>Mybrary</title>
 </head>
 <body>
+    <comment: the container class is defined in the following route ..|..|public|stylesheets|main.css>
+    <div class="container">
     <comment: puts all the code tha goes inside of our application before and after every single page> 
     Before
     <br> 
-    <%- include("../partials/header.ejs")%>
-    <%- include("../partials/errorMessage.ejs")%>
-    <%- body %> <this line imports every single one of our pages right in here >
+        <%- include("../partials/header.ejs")%>
+        <comment: inner-container class is defined in the following route ..|..|public|stylesheets|main.css>
+        <div class="inner-container">
+            <%- include("../partials/errorMessage.ejs")%>
+            <%- body %> <this line imports every single one of our pages right in here >
+        </div>
     <br>
     After
+    </div>
 </body>
 </html>
