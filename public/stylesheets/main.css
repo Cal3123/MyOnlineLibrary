@@ -5,6 +5,7 @@ and then inside of here we import all these different styles using the four belo
 @import 'shared/fonts.css';
 @import 'shared/header.css';
 @import 'shared/buttons.css';
+@import 'shared/form.css';
 
 :root {
   font-family: 'Gotham Rounded'; /*We include the font that we imported from the css file in shared folder here*/
