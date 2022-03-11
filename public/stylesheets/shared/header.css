@@ -1,61 +1,65 @@
 /*Inside of here we will define all of our header variables and CSS styling that we need to do*/
 :root {
-    --nav-title-font-size: 3rem;
-    --nav-title-font-weight: bold;
-    --nav-link-font-weight: 300;
-  }
-  /*header-title is the class that stles Mybrary*/
-  .header-title {
-    color: var(--color-text-light);
-    /*text-decoration: none removes the underline since by default every link is underlined. */
-    text-decoration: none;
-    font-size: var(--nav-title-font-size);
-    font-weight: var(--nav-title-font-weight);
-  }
-  /*this styles our nav element "Mybrary" and B-A-A-A elements and lines them up on the side*/
-  /*B-A-A-A is an acronym for "Book" "Add Book" "Authors" "Add Author". They are a bunch of links with a class called
-  header-link hence also conidered as one element*/
-  .header-nav {
-    /*flex so that we can display elements side-by-side */
-    display: flex;
-    /*this enables the elements to wrap-down or move-to-the-line-below when our screen gets too small so it
-    does not expand past the edge of our screen */
-    flex-wrap: wrap;
-    /*So that there is much space between our nav element "Mybrary" and "B-A-A-A" elemnts */
-    justify-content: space-between;
-    /*so that our element on the left "Mybrary" is centered with our element on the right "B-A-A-A"
-    that our nave elements is in the center and not close to the edge*/
-    align-items: center;
-    /*So that there is a margin between our nav elements and contents of our page*/
-    margin-bottom: 5rem;
-  }
-  
-  /*styles B-A-A-A links */
-  .header-nav ul {
-    /*flex so that B-A-A-A links are side-by-side */
-    display: flex;
-    /*So that there is no extra spacing around the B-A-A-A links/elements */
-    margin: 0;
-    /*So that there is no extra spacing beside the B-A-A-A links/elements */
-    padding: 0;
-    /*So now we have everything side-by-side with no margin and with no padding and we can work 
-    on the actual links themselves*/
-  }
-  /*selects li items/elements. */
-  .header-nav li {
-    /*none removes dots that shows up before the links*/
-    list-style: none;
-  }
-  /*This is styling each actual <a>href="/authors"<a/> links themselves of each B-A-A-A element. It is unordered at this point*/
-  /*'li' selects all li items and 'a' makes this class to focuse on the actual link themselves inside those li items*/
-  .header-nav li a {
-    text-decoration: none;
-    color: var(--color-text-light);
-    font-weight: var(--nav-link-font-weight);
-    padding: 1rem;
-  }
-  
-  /*Creates a hover effect so that each actual link item and title will turn white when you hover on them */
-  .header-nav li a:hover, .header-title:hover {
-    color: white;
-  }
+  --nav-title-font-size: 3rem;
+  --nav-title-font-weight: bold;
+  --nav-link-font-weight: 300;
+}
+/*header-title is the class that stles Mybrary*/
+.header-title {
+  color: var(--color-text-light);
+  /*text-decoration: none removes the underline since by default every link is underlined. */
+  text-decoration: none;
+  font-size: var(--nav-title-font-size);
+  font-weight: var(--nav-title-font-weight);
+}
+/*this styles our nav element "Mybrary" and B-A-A-A elements and lines them up on the side*/
+/*B-A-A-A is an acronym for "Book" "Add Book" "Authors" "Add Author". They are a bunch of links with a class called
+header-link hence also conidered as one element*/
+.header-nav {
+  /*notworking: It is not linning up the 'a' element and 'ul' element side by side*/
+  /*flex so that we can display elements side-by-side */
+  display: flex;
+  /*this enables the elements to wrap-down or move-to-the-line-below when our screen gets too small so it
+  does not expand past the edge of our screen */
+  flex-wrap: wrap;
+  /*notworking: spacebetween is nor being applied between the 'a' element and 'ul' element */
+  /*So that there is much space between our nav element "Mybrary" and "B-A-A-A" elemnts */
+  justify-content: space-between;
+  /*so that our element on the left "Mybrary" is centered with our element on the right "B-A-A-A"
+  that our nave elements is in the center and not close to the edge*/
+  align-items: right;
+  /*So that there is a margin between our nav elements and contents of our page*/
+  margin-bottom: 5rem;
+} 
+
+/*styles B-A-A-A links */
+.header-nav ul {
+  /*notworking: It is not linning up the li elements side by side*/
+  /*flex so that B-A-A-A links are side-by-side */
+  display: flex;
+  /*So that there is no extra spacing around the B-A-A-A links/elements */
+  margin: 0;
+  /*So that there is no extra spacing beside the B-A-A-A links/elements */
+  /*Though padding here is 0, the inner 'a' element padding in defined below is set to be 1rem*/
+  padding: 0;
+  /*So now we have everything side-by-side with no margin and with no padding and we can work 
+  on the actual links themselves*/
+}
+/*selects li items/elements. */
+.header-nav li {
+  /*none removes dots that shows up before the links*/
+  list-style: none;
+}
+/*This is styling each actual <a>href="/authors"<a/> links themselves of each B-A-A-A element. It is unordered at this point*/
+/*'li' selects all li items and 'a' makes this class to focuse on the actual link themselves inside those li items*/
+.header-nav li a {
+  text-decoration: none;
+  color: var(--color-text-light);
+  font-weight: var(--nav-link-font-weight);
+  padding: 1rem;
+}
+
+/*Creates a hover effect so that each actual link item and title will turn white when you hover on them */
+.header-nav li a:hover, .header-title:hover {
+  color: white;
+}

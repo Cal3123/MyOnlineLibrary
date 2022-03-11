@@ -2,6 +2,7 @@
 <div class=" book-details">
     <div>
         <img class="book-cover" src="<%= book.coverImagePath %>">
+        <comment: the -grid class styles the layout all anchor elements within the div>
         <div class = "book-details-btn-grid">
             <a class= " btn btn-primary" href="/books/<%= book.id %>/edit">Edit</a>
             <%- include('../partials/deleteForm', { url: `/books/${book.id}` }) %>

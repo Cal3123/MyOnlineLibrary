@@ -8,5 +8,7 @@
 </div>
 <% if (booksByAuthor.length > 0) { %>
   <h2 class="page-header">Books By Author</h2>
+  <comment: This partial encapsulates how the books should be displayed.
+  It is incuded from |partials|bookGrid >
   <%- include("../partials/bookGrid", {books: booksByAuthor})%>
 <% } %>

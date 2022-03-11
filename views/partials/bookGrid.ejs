@@ -1,8 +1,18 @@
+<comment: This partial encapsulates how the books should be displayed. It is included
+in authors|show.ejs . This generic partial just takes in a list  of books. The partial 
+dictates whether or not to display a large book gird or a small book grid and we need to
+set soome varaibles based on that. bookCoverClass is a variable. If what we pass into our
+locals is large then we want the book-cover-large as the class for our cover. Hence,
+bookCoverClass is equal book-cover-large If it is not
+large then do nothing. Smae fo bookGridClass >
 <% bookCoverClass = locals.large ? "book-cover-large" : ""%>
 <% bookGridClass = locals.large ? "book-grid-large" : ""%>
+<comment: applies CSS book-grid-large to all images > 
 <div class = "book-grid <%= bookGridClass%>">
     <% books.forEach(book => { %>
         <a href="/books/<%= book.id %>">
+        <comment: applies CSS book-cover-large to each image if the condition above is true.
+        Applies CSS book-cover class regardless of condition above >
         <img class = "book-cover <%= bookCoverClass%>"  src="<%= book.coverImagePath %>">
         </a>
     <% }) %> 

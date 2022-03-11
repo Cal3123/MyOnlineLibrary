@@ -1,3 +1,5 @@
+<comment: _form_fields is the page loaded everytime to recieve information of a new book>
+<comment: This CSS class form-row wraps all of our different rows Title-Arthur, Publish Date-Page Count, and Cover-Description> 
 <div class = "form-row">
   <div class = "form-item"> 
     <label>Title</label>
@@ -20,6 +22,8 @@
             </select>
   </div>
 </div>
+<coment: Publish Date & Page Count are in the same row so they are grouped in a form-row class >
+<coment: form-item contains both our label and input element>
 <div class = "form-row"> 
   <div class = "form-item">
     <label>Publish Date</label>
@@ -32,12 +36,15 @@
       value="<%= book.pageCount%>">
   </div>
 </div>
+<notworking: form-row is not working here>
 <div class = "form-row">
+  <comment: The additional form-item-no-grow class is to make our Cover small as possible so that it does not 
+  grow to be 50% of the width in the row> 
   <div class = "form-item form-item-no-grow">
     <label>Cover</label>
     <input type = "file" name = "cover" class="book-cover filepond">
   </div>
-  <div class = "form-item">
+  <div class = "form-item ">
     <label>Description</label>
     <textarea name = "description"><%= book.description%></textarea>
   </div>  

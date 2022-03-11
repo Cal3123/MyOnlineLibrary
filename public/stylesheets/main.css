@@ -1,6 +1,10 @@
 /*Now in order to include all these differrent fonts from /shared/font.css inside of our project we create this main.css file
 and then inside of here we import all these different styles using the four below import statements
 */
+/*Note that since we are using import inside of our css. The imported css actually get loaded after our main css gets loaded
+and after the document gets loaded. So when when fileUpload javascript runs the css inside the book css will not be loaded yet.
+So we need to make sure to account for that. The easisest way to do that is first we want check and get the CSS style for our root 
+styles  */
 @import 'shared/variables.css';
 @import 'shared/fonts.css';
 @import 'shared/header.css';

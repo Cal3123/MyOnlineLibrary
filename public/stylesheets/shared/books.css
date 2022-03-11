@@ -1,31 +1,40 @@
+/*Variable in here determines the sizing of our book cover variables*/
 :root {
+    /*This will be the standard width*/
     --book-cover-width: 200 px;
+    /*This will be the large variant*/
     --book-cover-width-large: 325 px;
+    /*THis will be the difference between the high and the width*/
     --book-cover-aspect-ratio: 0.75;
 }
-
+/*This will be our standard book cover*/
 .book-cover {
     width: var(--book-cover-width);
-    width: calc(var(--book-cover-width)/var(--book-cover-aspect-ratio));
+    /*The hight is width/ratio*/
+    height: calc(var(--book-cover-width)/var(--book-cover-aspect-ratio));
 }
-
+/*This will be our large book variant*/
 .book-cover-large {
     --book-cover-width: var(--book-cover-width-large);
-
 }
-
+/*Styling the layout for the grid*/
 .book-grid {
     display: grid;
-    justify-content: e=center;
+    justify-content: center;
+    /*We want a slight gap between all of our elements*/
     grid-gap: 2rem;
+    /*auto-fill means our columns is going to fill books in as musch space on the width as possible 
+    before it wraps to the nextline*/
     grid-template-columns: repeat(auto-fill, var(--book-cover-width));
 }
 
 .book-grid-large {
+    /*Here we redifine our template columns. We use a large width so that thing do not overlap each other.*/
     grid-template-columns: repeat(auto-fill, var(--book-cover-width-large));
 }
 
 .book-details {
+    /* display flex lines up everything horizontally*/
     display: flex;
 }
 
@@ -40,20 +49,31 @@
      align-content: flex-start;
      align-items: center;
      grid-gap: 1rem;
+     /*'auto' so that these columns will automatically define their size 
+     based on the content that is on them*/
      grid-template-columns: auto auto
 }
 
 .book-details-grid-btn-grid {
     display: grid;
+    /*justify items at the start*/
     justify-items: flex-start;
+     /*align items at the start*/
     align-items: flex-start;
+     /*align contents at the start. That means our button is going to be pushed as high 
+     up against this image as possible*/
     align-content: flex-start;
-    grid-template-areas: "edit delete" "author author";
+    grid-template-areas: 
+        "edit delete" 
+        "author author";
     grid-gap: .5rem;
+    /*This creates a little bit of spacing between button and image*/
     margin-top: .5rem;
 }
 
+/*This is applied to the author button in addtion to the class above*/
 .book-details-author-button {
     grid-area: author;
+    /*Expand sthe author button to be the full width of edit and delet button*/
     justify-self: stretch;
 }

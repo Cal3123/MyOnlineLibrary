@@ -1,7 +1,9 @@
+<comment: this body page al;lows you edit an authurs name >
 <h2 class="page-header">Edit Author</h2>
 <comment: change from action to have the id at the end. Ovverides POST to use PUT in arthors route>
 <form action="/authors/<%= author.id %>?_method=PUT" method="POST">
   <%- include('_form_fields') %>
+  <working: form-row form-row-end works here btn-row>
   <div class = "form-row form-row-end btn-row">
     <comment: cancel automatically brings us back to the arthor show page by creating a 
     url using the selected arthor's id>

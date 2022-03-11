@@ -1,16 +1,16 @@
 /*Defines all differrent varaiables inside of our root element*/
 :root {
-    /*200 is our hue for all the different variables*/
-    /*the benefit of making our hue paramter a vriable is that you can change the hue value for all other variables just by changing this*/
-    --color-base-hue: 200;
-    /*This is the variable that offsets of color-base-hue to its direct opposite*/
-    --color-danger-hue-offset: 180;
-    /*We want our color-danger-hue to be a direct opposit of our color-base-hue. The hue paramter of hsl goes from
-    0 to 360 then wraps around to the front.  Hence to get the opposit we will minus 180 (not 360) from our current color-base-color*/
-    --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offset));
-    /*hsl is the color scheme that defines the varaiable. 
-    first parameter in hsl is the hue, second is sturation value, third parameter is our lightness*/
-    --color-background-dark: hsl(var(--color-base-hue), 100%, 8%);
-    --color-background-light: hsl(var(--color-base-hue), 100%, 16%);
-    --color-text-light: hsl(var(--color-base-hue), 100%, 87%);
-  }
+  /*200 is our hue for all the different variables*/
+  /*the benefit of making our hue paramter a vriable is that you can change the hue value for all other variables just by changing this*/
+  --color-base-hue: 200;
+  /*This is the variable that offsets of color-base-hue to its direct opposite*/
+  --color-danger-hue-offset: 180;
+  /*We want our color-danger-hue to be a direct opposit of our color-base-hue. The hue paramter of hsl goes from
+  0 to 360 then wraps around to the front.  Hence to get the opposit we will minus 180 (not 360) from our current color-base-color*/
+  --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offset));
+  /*hsl is the color scheme that defines the varaiable. 
+  first parameter in hsl is the hue, second is sturation value, third parameter is our lightness*/
+  --color-background-dark: hsl(var(--color-base-hue), 100%, 10%);
+  --color-background-light: hsl(var(--color-base-hue), 100%, 18%);
+  --color-text-light: hsl(var(--color-base-hue), 100%, 87%);
+}
