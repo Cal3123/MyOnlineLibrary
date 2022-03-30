@@ -59,6 +59,10 @@ on the left and right  */
 }
 
 .notification {
-  font-size: 1.0rem;
+  font-size: 0.95rem;
   padding: 0.25rem 0;
+}
+
+.notification-head {
+  font-size: 1.25rem; 
 }
