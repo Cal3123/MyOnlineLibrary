@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--The layout is the mother of every other views file. The all run in here before the user  sees.
+    CSS classes are also imported in here and are applied to each ejs file before they are rendered on the web-->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <comment: By default filpond.js & filpond.cs uploads these files to our server asynchronously as 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- By default filpond.js & filpond.cs uploads these files to our server asynchronously as 
     soon as somenone selects them inside our drop down. It is not enough to incorperate everything 
-    we want in file prompt. It does not have any previewing or anything like that  >
-    <comment: filpond.css loads the latest version of FilePond from a CDN. It is in the layout page 
-    because we want it gto be avilable in every single page that we are using it on >
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" /> 
-    <comment: filpond.js this script tags ensure that they are (filpond is) loaded and runafter the 
-    entire body of our page is done rendering>
-    <comment: to send the file with the server form submit, we download a package from plugin library 
+    we want in file prompt. It does not have any previewing or anything like that-->
+    <!-- filpond.css loads the latest version of FilePond from a CDN. It is in the layout page 
+    because we want it gto be avilable in every single page that we are using it on-->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <!-- filpond.js this script tags ensure that they are (filpond is) loaded and runafter the 
+    entire body of our page is done rendering-->
+    <!-- to send the file with the server form submit, we download a package from plugin library 
     from installation page on filepond a.k.a more tags; encode.js script tag, preview.css link tag,
-    image-resize.js script tag & preview.js script tag. defer is added to all script tags>
-    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
-    <link
-    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-    rel="stylesheet"
-    />
+    image-resize.js script tag & preview.js script tag. defer is added to all script tags-->
     <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
     <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
-    <script defer src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-    <comment: Below is our own script tag which will allow us to setup the filepond library. We create that inside 
-    a folder called javascript, and call it fileupload.js>
+    <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <!-- Below is our own script tag which will allow us to setup the filepond library. We create that inside 
+    a folder called javascript, and call it fileupload.js-->
     <script defer src="/javascripts/fileUpload.js"></script>
-    <coomment: this link tag includes main.css found in href route inside our layout view. rel names the link tag>
+    <!-- this link tag includes main.css found in href route inside our layout view. rel names the link tag-->
     <link id="main-css" rel="stylesheet" href="/stylesheets/main.css">
     <title>Mybrary</title>
 </head>
 <body>
-    <comment: the container class is defined in the following route ..|..|public|stylesheets|main.css>
+    <!-- the container class is defined in the following route ../../public/stylesheets/main.css-->
     <div class="container">
-    <comment: puts all the code tha goes inside of our application before and after every single page> 
-    <Before page content > 
-    <br> 
+    <!-- puts all the code tha goes inside of our application before and after every single page--> 
+    <!--Before page content--> 
         <%- include("../partials/header.ejs")%>
-        <comment: inner-container class is defined in the following route ..|..|public|stylesheets|main.css>
+        <!-- inner-container class is defined in the following route ../../public/stylesheets/main.css-->
         <div class="inner-container">
-            <%- include("../partials/errorMessage.ejs")%>
-            <%- body %> <this line imports every single one of our pages right in here >
-        </div>
-    <br>
-    <After page content >
+            <%- include('../partials/errorMessage.ejs') %>
+            <%- body %> <!--this line imports every single one of our pages right in here-->
+        </div> 
+    <!--After page content-->
     </div>
 </body>
 </html>

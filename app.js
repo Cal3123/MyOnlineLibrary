@@ -36,22 +36,31 @@ db.on("error", error => console.error (error)) //prints out error if we run into
 db.once("open", () => console.log("Connected to Mongoose")) //runs only one time when we open up our database for the first time
 
 server.set("view engine", "ejs") //sets ejs as our view engine
+//'__dirname' I think it means look into folder current directory a url extension
+//the default file/folder that ejs looks for to render pages is named "views" so you are telling it to find in a different folder 
+//that uou have also named views
+//Here you could have named it differently also
 server.set("views", __dirname + "/views") //sets where our views will be coming from 'currentdirectory/views'
 //sets where our layout file is going to be. The idea of the layout file is that 
 //every single file is going to be put in this layout file so we don't have to 
 //duplicate all of the beginning html and ending html of our project such as the header and the footer
+//The default file that ejs looks for inside of views to render every other page is named "layout"
+//so you ae telling it to find it in a different folder that you have alos named  layout
+//Here you could have named it differently
 server.set("layout", "layouts/layout")
 server.use(expressLayouts) //tells the express applcation that we are going to use expressLayouts
 server.use(express.static("public")) //tells express where our public files such as style shit,js of our images is going to be
+
+/**HERE is a critical part to understanding web development.
+ * After the creating the various Router variables ()
+ */
 server.use("/", indexRouter) //creates a root "/" and tells indexRouter to handle that root, server uses it
 server.use("/authors", authorRouter)
 server.use("/books", bookRouter)
 
-
-//server.use(bodyParser.urlencoded({ extended: false}))
-server.use(bodyParser.json({ limit: "100mb"}))
-//server.use(express.urlencoded({limit: "100mb", extended: true}))
-server.use(bodyParser.urlencoded({limit: "100mb", extended: true}))
+//server.use(bodyParser.json({ limit: "100mb"}))
+//server.use(express.urlencoded({extended: true, limit: "500mb", parameterLimit: 100000 }))
+server.use(bodyParser.urlencoded({extended: true, limit: "500mb", parameterLimit: 100000 }))
 
 //sets up our server to listen on the port that we want it to
 //server.listen takes a single function that we will if there is an error potentially

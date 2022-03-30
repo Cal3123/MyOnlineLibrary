@@ -1,50 +1,52 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router() //creates the router portion of the express variable
-const Author = require("../models/author")
-const Book = require("../models/book")
+const Author = require('../models/author')
+const Book = require('../models/book')
+ 
 
 const bodyParser = require('body-parser')
-var jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const urlencodedParser = bodyParser.urlencoded({extended: true, limit: "500mb", parameterLimit: 100000 })
+//const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-//All Authors Route
+
+/**All Authors Route**/
 router.get('/', async (req, res) => {
-  let searchOptions= {}
-  if (req.query.name != null && req.query.name != '') {
+  let searchOptions = {}
+  if (req.query.name != null && req.query.name !== '') {
     searchOptions.name = new RegExp(req.query.name, 'i')
-  } 
+  }
   try {
     const authors = await Author.find(searchOptions)
     res.render('authors/index', {
-      authors: authors ,
-      searchOptions: req.query 
+      authors: authors,
+      searchOptions: req.query
     })
   } catch {
     res.redirect('/')
   }
 })
 
-//New Author Route
-router.get("/new", ( req, res) => {
-    res.render("authors/new", {author: new Author()})
+/**New Author Route**/
+router.get('/new', (req, res) => {
+  res.render('authors/new', { author: new Author() })
 })
 
-//Create Author Route
+/**Create Author Route**/
+/** router.post('/', async (req, res) => { //not used **/
 router.post("/", urlencodedParser , async ( req, res) => {
    // console.log(req.body)
-    const author = new Author({
-        name: req.body.name
-    }) 
-
-    try {
-        const newAuthor = await author.save()
-        res.redirect(`authors/${newAuthor.id}`)
-      } catch {
-        res.render('authors/new', {
-          author: author,
-          errorMessage: 'Error creating Author'
-        })
-      }
+  const author = new Author({
+    name: req.body.name
+  })
+  try {
+    const newAuthor = await author.save()
+    res.redirect(`authors/${newAuthor.id}`)
+  } catch {
+    res.render('authors/new', {
+      author: author,
+      errorMessage: 'Error creating Author'
+    })
+  }
 })
 
 //For SHOWING BOOKS by arthor page our user. '/:id' signifies that after this colon there is going to be a variable 
@@ -58,7 +60,7 @@ router.get('/:id', async (req, res) => {
     const books = await Book.find({ author: author.id }).limit(6).exec()
     res.render('authors/show', {
       author: author,
-      booksByAuthor: books
+      booksByAuthor: books,  
     })
   } catch {
     //render us back to th home page if we fail to get either author or books
@@ -85,7 +87,7 @@ router.get('/:id/edit', async (req, res) => {
 //based on that specific parameter
 
 //this is an update route. Updates arthor. put essentially tells us that this is going to be an edit route
-router.put('/:id', async (req, res) => {
+router.put('/:id', urlencodedParser,async (req, res) => {
   let author
   try {
     //gets the id from the url. searches for it in mongoose database to find arthor
@@ -119,17 +121,50 @@ router.delete('/:id', async (req, res) => {
     author = await Author.findById(req.params.id)
     //the remove method is a method in mongoose db database. 
     await author.remove()
-    //redirects you to the arthor page so that we can see all the available arthor page after we delete
+    
+    //redirects you to the author page so that we can see all the available arthor page after we delete
     res.redirect('/authors')
-  } catch {
+  } catch(error) { 
     if (author == null) {
+      //redirects to home page
       res.redirect('/')
-    } else {
+    } else { 
+      //renderFormPage(res, true)
+      
       //if we fail removing the arthor, we will redirect back to the arthor
-      res.redirect(`/authors/${author.id}`)
-    }
+      res.redirect( `/authors/${author.id}`) 
+      /**INitial --> res.redirect(`/authors/${author.id}`) **/ 
+      //res.redirect(params, `/authors/${author.id}`)
+    } 
   }
 })
+ 
+async function renderFormPage(res, hasError = false) {
+   
+  
+  try {
+    if(hasError) {
+      const params = {
+        errorMessage: 'This author has book books'
+      }
+      console.log("HERE!")
+      /**This is the problem
+       * Important knowlege
+       * For some reason params is unable to reach errorMessage.ejs through layout.ejs 
+       * Note to render means I need to pass author variable and searchoption just like
+       * I did in All authors router. Redirects makes no changes, it just simply sends you to
+       * tha page with that form action and that page in turn, using it's form action, calls the 
+       * its respective router (IN this case All authors router) and that router repopulates, better term
+       * renders, it again (the page) at the same time giving it the respective variables to do
+       * that. **/
+      /* problem -->res.render(`/authors` ) **/
+    }
+    //res.redirect(`/authors/${author.id}`, errorMessage)   
+  } catch (error) {
+    console.log("HHHHERE!")
+    res.redirect('/authors' )
+  }
+} 
 
 //exportsa information from this file, exports router
 module.exports = router

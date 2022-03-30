@@ -16,13 +16,11 @@
 /*B-A-A-A is an acronym for "Book" "Add Book" "Authors" "Add Author". They are a bunch of links with a class called
 header-link hence also conidered as one element*/
 .header-nav {
-  /*notworking: It is not linning up the 'a' element and 'ul' element side by side*/
   /*flex so that we can display elements side-by-side */
   display: flex;
   /*this enables the elements to wrap-down or move-to-the-line-below when our screen gets too small so it
   does not expand past the edge of our screen */
   flex-wrap: wrap;
-  /*notworking: spacebetween is nor being applied between the 'a' element and 'ul' element */
   /*So that there is much space between our nav element "Mybrary" and "B-A-A-A" elemnts */
   justify-content: space-between;
   /*so that our element on the left "Mybrary" is centered with our element on the right "B-A-A-A"
@@ -34,7 +32,6 @@ header-link hence also conidered as one element*/
 
 /*styles B-A-A-A links */
 .header-nav ul {
-  /*notworking: It is not linning up the li elements side by side*/
   /*flex so that B-A-A-A links are side-by-side */
   display: flex;
   /*So that there is no extra spacing around the B-A-A-A links/elements */

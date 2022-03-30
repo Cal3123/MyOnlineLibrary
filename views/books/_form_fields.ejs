@@ -1,51 +1,59 @@
-<comment: _form_fields is the page loaded everytime to recieve information of a new book>
-<comment: This CSS class form-row wraps all of our different rows Title-Arthur, Publish Date-Page Count, and Cover-Description> 
+<!-- _form_fields is the page loaded everytime to recieve information of a new book-->
+<!-- This CSS class form-row wraps all of our different rows Title-Arthur, Publish Date-Page Count, and Cover-Description--> 
 <div class = "form-row">
   <div class = "form-item"> 
     <label>Title</label>
-    <input type = "text" name = "title" value = "<%= book.title%>">
+    <!--Reason Why value = book.title, author.name, etc
+    It is because edit.ejs also uses this partial. When you click to edit book. What it 
+    does is it parses the book values into this partial which ion turn populates text areas
+    with respective values before it renders on the web page. If you click to add book, it shows
+    the text area as empty and whatever you input i swhat is assigned to value-->
+    <input type = "text" name = "title" value = "<%=book.title%>">
   </div>
   <div class = "form-item">
     <label>Author</label>
-    <comment: We don't want all the code inside our view file, We want inside our server>
-    <comment: Instead we pass a variable inside our view which is all the authors we want>
-    <comment: to loop over.Inside our server we are going pass the author variable down into our view>
-        <select name="author">
-            <% authors.forEach(author => { %>
-              <comment: book.author, the author is the id of our author inside of our book> 
-              <% if (author.id === book.author) { %>
-                <option selected label="<%= author.name %>" value="<%= author.id %>">
-              <% } else { %>
-                <option label="<%= author.name %>" value="<%= author.id %>">
-              <% } %>
-            <% }) %>
-            </select>
+    <!-- We don't want all the code inside our view file, We want inside our server-->
+    <!-- Instead we pass a variable inside our view which is all the authors we want-->
+    <!-- to loop over.Inside our server we are going pass the author variable down into our view-->
+      <select name="author">
+          <% authors.forEach(author => { %>
+            <!-- book.author, the author is the id of our author inside of our book--> 
+            <!--Every name you select from the frontend has an id. This is saying that if the id 
+            can be found in book database authors' id then ..
+            Figure out what 'selected label' means -->
+            <% if (author.id === book.author) { %>
+              <option selected label="<%= author.name%>" value="<%=author.id%>">
+              <!--option selected label="<%= author.name%>" value="<%=author.id %>"-->
+            <% } else { %>
+              <option label="<%= author.name %>" value="<%=author.id%>">
+              <!--option label="<%= author.name%>" value="<%=author.id %>"-->
+            <% } %>
+          <% }) %>
+      </select>
   </div>
 </div>
-<coment: Publish Date & Page Count are in the same row so they are grouped in a form-row class >
-<coment: form-item contains both our label and input element>
+<!-- Publish Date & Page Count are in the same row so they are grouped in a form-row class-->
+<!-- form-item contains both our label and input element-->
 <div class = "form-row"> 
   <div class = "form-item">
     <label>Publish Date</label>
     <input type = "date" name = "publishDate" 
-      value="<%= book.publishDate == null ? '' : book.publishDate.toISOString().split('T')[0] %>">
+      value="<%=book.publishDate == null? '' : book.publishDate.toISOString().split('T')[0] %>">
   </div>
   <div class = "form-item">
     <label>Page Count</label>
-    <input type = "number" name = "pageCount" min ="1"
-      value="<%= book.pageCount%>">
+    <input type = "number" name = "pageCount" min ="1" value="<%=book.pageCount%>">
   </div>
-</div>
-<notworking: form-row is not working here>
+</div> 
 <div class = "form-row">
-  <comment: The additional form-item-no-grow class is to make our Cover small as possible so that it does not 
-  grow to be 50% of the width in the row> 
+  <!-- The additional form-item-no-grow class is to make our Cover small as   
+  possible so that it does not grow to be 50% of the width in the row--> 
   <div class = "form-item form-item-no-grow">
-    <label>Cover</label>
+    <label>Cover Image</label>
     <input type = "file" name = "cover" class="book-cover filepond">
   </div>
   <div class = "form-item ">
     <label>Description</label>
-    <textarea name = "description"><%= book.description%></textarea>
+    <textarea name = "description"><%=book.description%></textarea>
   </div>  
 </div>

@@ -8,11 +8,11 @@
     </div>
     <div class="form-row">
         <div class="form-item">
-            <label>Publish After</label >
+            <label>Published After</label >
             <input type ="date" name = "publishedAfter" value="<%= searchOptions.publishedAfter%>">
         </div>    
         <div class="form-item"> 
-            <label>Publish Before</label >
+            <label>Published Before</label >
             <input type ="date" name = "publishedBefore" value="<%= searchOptions.publishedBefore%>"> 
         </div>
     </div>
@@ -21,6 +21,6 @@
     </div>
 </form> 
 <br>
-<comment: renders all our different books as imgaes as we want to>
+<!-- renders all our different books as imgaes as we want to-->
 <%- include("../partials/bookGrid", {books: books, large: true})%>
  

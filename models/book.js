@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 //** No longer need coverImageBasePath
 //here is the upload path inside of our project where all of our coverImages is going to be stored
 //we want to store that inside of our uploads/bookCovers folder which is going to be inside of our public folder
@@ -10,35 +10,34 @@ const mongoose = require("mongoose")
 const bookSchema = new mongoose.Schema({
     //book has a title, description, a date, and pagecount counts the number of books created
     //book also auttomayically stores the Date it was created
-    title:{
+    title: {
         type: String,
         required: true
-    },
-    description:{
-        type: String,
-        required: true
-    },
-    publishDate:{
+      },
+      description: {
+        type: String
+      },
+      publishDate: {
         type: Date,
         required: true
-    },
-    pageCount:{
+      },
+      pageCount: {
         type: Number,
         required: true
-    },  
-    createdAt:{
+      },
+      createdAt: {
         type: Date,
         required: true,
         default: Date.now
-    },
+      },
     //the image itself will be stored on the server in the file system. 
     //This is to store the cover image itself as a buffer representing our entire image
     coverImage: {
         type: Buffer,
-        required : true
+        required: true
     },
     //In order to render the coverImage we need to know what type image it is
-    coverImageType:{
+    coverImageType: {
         type: String,
         required: true
     },
@@ -49,7 +48,7 @@ const bookSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         //tells mongoose what we are referencing, the author collection in our database
-        ref: "Author"
+        ref: 'Author'
     }
 })
 
@@ -77,7 +76,7 @@ bookSchema.virtual('coverImagePath').get(function() {
         //data:${datatype};charset= tell it the charset; how it is encoded,${puts the actual data inside of here 
         //as base 64 encoded }`
         //this returns the proper string for our image source in order to display the image from our buffer and type
-      return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
+        return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
     }
   })
 
@@ -86,4 +85,4 @@ bookSchema.virtual('coverImagePath').get(function() {
 //and set it it to coverImageBasePath
 //module.exports.coverImageBasePath = coverImageBasePath
 
-module.exports = mongoose.model("Book", bookSchema)
+module.exports = mongoose.model('Book', bookSchema)
