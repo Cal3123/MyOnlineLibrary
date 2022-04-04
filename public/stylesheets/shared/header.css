@@ -4,7 +4,7 @@
   --nav-title-font-weight: bold;
   --nav-link-font-weight: 300;
 }
-/*header-title is the class that stles Mybrary*/
+/*header-title is the class that stles MyOnline Library*/
 .header-title {
   color: var(--color-text-light);
   /*text-decoration: none removes the underline since by default every link is underlined. */
@@ -12,7 +12,7 @@
   font-size: var(--nav-title-font-size);
   font-weight: var(--nav-title-font-weight);
 }
-/*this styles our nav element "Mybrary" and B-A-A-A elements and lines them up on the side*/
+/*this styles our nav element "MyOnline Library" and B-A-A-A elements and lines them up on the side*/
 /*B-A-A-A is an acronym for "Book" "Add Book" "Authors" "Add Author". They are a bunch of links with a class called
 header-link hence also conidered as one element*/
 .header-nav {
@@ -21,9 +21,9 @@ header-link hence also conidered as one element*/
   /*this enables the elements to wrap-down or move-to-the-line-below when our screen gets too small so it
   does not expand past the edge of our screen */
   flex-wrap: wrap;
-  /*So that there is much space between our nav element "Mybrary" and "B-A-A-A" elemnts */
+  /*So that there is much space between our nav element "MyOnline Library" and "B-A-A-A" elemnts */
   justify-content: space-between;
-  /*so that our element on the left "Mybrary" is centered with our element on the right "B-A-A-A"
+  /*so that our element on the left "MyOnline Library" is centered with our element on the right "B-A-A-A"
   that our nave elements is in the center and not close to the edge*/
   align-items: right;
   /*So that there is a margin between our nav elements and contents of our page*/
