@@ -18,7 +18,6 @@ const Author = require('../models/author')
 //const multer = require("multer") **no longer needed due to file encode plugin of filepond 
 //an array that has all the different image types that we accept
 const imageMimeTypes = ['image/jpeg', 'image/jpg', 'image/jfif', 'image/pjpeg', 'image/pjp', 'image/svg', 'image/webp', 'image/avif', 'image/apng', 'image/png', 'image/gif'] //no longer to be used with multer  
-
 const bodyParser = require('body-parser')
 
 const urlencodedParser = bodyParser.urlencoded({extended: true, limit: "500mb", parameterLimit: 100000 })
