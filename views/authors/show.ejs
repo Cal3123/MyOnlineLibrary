@@ -1,0 +1,22 @@
+<div class="notification" >
+  <div class="notification-head"> Notification Area: </div>  
+  <br> 
+  <br> 
+  You must delete all books written by author before author is deleted. 
+</div>
+<h2 class="page-header"><%= author.name %></h2>
+<div class="btn-row">
+   
+  <!-- author.id that way we edit the correct author-->  
+  <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+  <!-- inculdes partial delete form--> 
+  <%- include('../partials/deleteForm',
+              { url: `/authors/${author.id}` }) %>
+</div>
+<% if (booksByAuthor.length > 0) { %>
+  <h2 class="page-header">Books By Author</h2>
+  <!-- This partial encapsulates how the books should be displayed.
+  It is incuded from /partials/bookGrid. booksByAuthor value only parses
+  books that belong to the author-->
+  <%- include("../partials/bookGrid", {books: booksByAuthor})%>
+<% } %>

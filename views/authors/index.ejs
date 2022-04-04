@@ -1,0 +1,30 @@
+<h2 class="page-header">Search Authors</h2>
+<form action="/authors" method = "GET">
+    <div class="form-row">
+        <div class="form-item">
+            <label>Name</label >
+            <input type ="text" name = "name" value="<%= searchOptions.name%>">
+            
+        </div>
+    </div>
+    <div class="form-row form-row-end">
+        <button class="btn btn-primary" type="submit"> Search</button>
+    </div>
+</form>
+<br>  
+ 
+ <% authors.forEach(author => { %>
+    <div class="author-row">
+        <div class="author-name"><%=author.name %></div>
+        <!-- btn-row spaces out the buttons so that they look correct on the frontend--> 
+        <div class="btn-row">
+            <!-- the view link passes the id of the author and input it in as the end of the url--> 
+            <a class = "btn btn-primary" href="/authors/<%= author.id %>">View</a>
+            <!-- the edit link only appends the url with /edit. The edit.js page runs here--> 
+            <a class = "btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+            <!-- inlcudes partials/deleteForm from partials folder. We use string interpolation for 
+            becuase this is going to run on our server  and we want it to be undertandable to our server--> 
+            <%- include('../partials/deleteForm', { url: `/authors/${author.id}` }) %>
+        </div>
+    </div>
+<% }) %>

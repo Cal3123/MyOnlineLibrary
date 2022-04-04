@@ -1,0 +1,86 @@
+:root {
+  /*The varaible in var()'s are all from variables.css. I think it is beacuse same variables
+  are/ will be used across all css file. It saves time and ensures consistency*/
+  /*background color for primary button*/
+  --color-btn-primary-background: hsl(var(--color-base-hue), 100%, 83%);
+  /*This color varaibale is there to give a darker version of color-base-hue (primary color) when cursor hover over a button */
+  /*what changes in comparison to primary-background is the lightness value in third parameter is made to be lower*/
+  /*background color for primary-hover button*/
+  --color-btn-primary-background-dark: hsl(var(--color-base-hue), 100%, 73%);
+  /*text color for primary button*/
+  --color-btn-primary-text: hsl(var(--color-base-hue), 100%, 20%);
+  /*text color for primary-hover button*/
+  --color-btn-primary-text-dark: hsl(var(--color-base-hue), 100%, 10%);
+  --color-btn-border: black;
+  --color-btn-danger-background: hsl(var(--color-danger-hue), 100%, 83%);
+  /*This is color is there to give same hover effect to danger button just like primary-background-dark does to promary button */
+  /*background color for danger-hover button*/
+  --color-btn-danger-background-dark: hsl(var(--color-danger-hue), 100%, 73%);
+    /*text color for danger button*/
+  --color-btn-danger-text: black;
+  /*text color for danger-hover button*/
+  --color-btn-danger-text-dark: black;
+}
+/*Creating a base button class which defines the look and feel of a button minus the actual color*/
+/*This button class is going to ba applied to all of our buttons and shared between our primary and danger buttons*/
+.btn {
+  /*1 px solid border of a color defined as a variable*/
+  border: 1px solid var(--color-btn-border);
+  /*border-radius curves the button corners */
+  border-radius: .5rem;
+  /*Padding around button text. .5rem on top & bottom. 1rem on left and right*/
+  padding: .5rem 1rem;
+  /*Below is the code to CSS style your button text. The reason why we CSS style button text in 
+  button class is because by default the font on your buttons is not equal to your root family*/
+  /*font-size of text*/
+  font-size: 1.2rem;
+  font-family: 'Gotham Rounded';
+  /*This changes your normal cursor to a hand cursor once you hover around the button*/
+  cursor: pointer;
+  /*Links are underlined ny default. This removes the underline*/
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-row{
+  /*changes display to be flex so that they wind up right next to each other */
+  display: flex;
+  /*align-iems is fekx-start so that all the buttons will align at the very beginning of the inner container*/
+  align-items: flex-start;
+}
+/*Helps space the buttons out from each other. Creates a 1rem spacing to the left of each button*/
+/*Now we will want to remove the 1rem spacing for the first button*/
+.btn-row > * {
+  margin-left: 1rem;
+}
+/*This right here removes the 1rem spacing to the left of the first child*/
+.btn-row > *:first-child {
+  margin-left: 0;
+}
+
+
+.btn-primary {
+  /*color means the color of the text*/
+  color: var(--color-btn-primary-text);
+  /*background-color means color surrounding the text*/
+  background-color: var(--color-btn-primary-background);
+}
+
+/*primary hover button*/
+/*Uses the dark variant of the primary variable*/
+.btn-primary:hover {
+  color: var(--color-btn-primary-text-dark);
+  background-color: var(--color-btn-primary-background-dark);
+}
+
+/*Is applied to our delete button*/
+.btn-danger {
+  color: var(--color-btn-danger-text);
+  background-color: var(--color-btn-danger-background);
+}
+/*danger hover button*/
+/*Uses the dark variant of the danger variable*/
+.btn-danger:hover {
+  color: var(--color-btn-danger-text-dark);
+  background-color: var(--color-btn-danger-background-dark);
+}

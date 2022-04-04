@@ -1,0 +1,12 @@
+/*This class is used to style the author row in our index page*/
+.author-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+/*This is used to style the name in our author row*/
+.author-name {
+    font-size: 1.5rem;
+}
+

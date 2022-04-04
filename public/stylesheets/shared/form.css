@@ -1,0 +1,118 @@
+/*This is to style or form elements for our new book page & author page. Since most of the elements
+on both pages are the same, we create on css file and and apply class in that file to both pages.*/
+:root {
+    --form-label-font-size: 1.25rem;
+    --form-input-background-color: hsl(var(--color-base-hue), 100%, 31%);
+    --form-input-border-color: hsl(var(--color-base-hue), 100%, 50%);
+    --form-input-border-color-light: hsl(var(--color-base-hue), 100%, 80%);
+
+}
+/*We define the form row class such that every single item inside of it is going to grow to be
+equal width of each other. While the form-row enscapsulate evrey single item in a row, the form-row selects each item*/
+/*This essentially defines how we want to layout our elements in a row*/
+.form-row{
+    display: flex;
+    margin-bottom: .5rem;
+}
+
+/*Styling in this selector is then marched with each element in the form row*/
+.form-item{
+    display: flex;
+    /*flex-direction is column so that our label element will always be on top/be first b4 our input element*/
+    flex-direction: column; 
+    /*leaves 2rem to the left of each item*/
+    margin-left: 2rem;
+    /*This defines our element spacing out and growing as large as possible to right*/
+    flex-grow: 1;
+    /*To make sure that each item have the same exact width we define flex-basis: to be 0 so 
+    they both grow from th e same point*/
+    flex-basis:0;
+}
+
+/*Our form is indented. To remove that we will set our first child margin left to be zero*/
+.form-item:first-child{
+    margin-left: 0;
+}
+
+/*This styling makes the item small as possible so that it does not 
+  grow to be 50% of the width in the row */
+.form-item-no-grow {
+    flex-grow: 0;
+}
+
+/*Theis class pushes elements to the end of the row*/
+.form-row-end{
+    justify-content: flex-end;
+}
+
+/*Styles each label html element in the form-item class*/
+.form-item > label{
+    font-size: var(--form-label-font-size);
+    /*Leaves a bottom margin at the bottom so that label is not touching the input element*/
+    margin-bottom: .25rem;
+    /*margin on the left side of our html element so that our label are indented a little bit*/
+    margin-left: .25rem;
+}
+
+/*Styles our input html element, the select html element (the author is a select box), text area html element(the description
+is a textarea)*/ 
+.form-item input, .form-item select, .form-item textarea {
+    height: 2rem;
+    /*Spaces out the text from the borders of our box*/
+    padding: .25rem .5rem;
+    /*Rounds the edges of our textarea*/
+    border-radius: .25rem;
+    /*displays the actual border itself by givivng it a bold 1px solid color*/
+    border:  1px solid var(--form-input-border-color);
+    /*Gives a color to our text area*/
+    background-color: var(--form-input-background-color);
+    /*Gives a color to our text*/
+    color: var(--color-text-light);
+    font-size: 1rem;
+    /*Agaiin we define font family and size of our input elemenets because they 
+    default to a different font size than your actual application*/
+    font-family: "Gotham Rounded";
+    font-weight: normal;
+    outline: none;
+}
+
+/*Our textarea is not the right size in our font-item. So we set the height and prevent it from being
+manually resized but user's cursor. The focus selector property helps you to fucus on one class out 
+of our class combinations */
+.form-item textarea {
+    height: 100%;
+    resize: none;
+}
+
+/*Option is a html element that is inside of the select html element. This class styles the option element */
+.form-item select option {
+    background-color: black;
+}
+
+/*You notices that when you do not click on the input/select/textarea we get our desired border color but .. */
+/*when you click inside of input/select/textarea we get a white color that shows around the edges and so the CSS focus slector property is styled
+to style the color that shows around the edges whenever our input/select/textarea is clicked by our mouse  */
+.form-item input:focus, .form-item select:focus, .form-item textarea:focus {
+    /*the edge color is styled using the border-color property. The white edge color is the border color*/
+    border-color: var(--form-input-border-color-light);
+}
+
+/*Drag&drop file upload that we have imported threough filepond. These are predefined classes used to 
+define filepond's drag&drop file upload. All other classes inherit from the root class */
+.filepond--root {
+    /*styles input area to have below font-family*/
+    font-family: "Gotham Rounded";
+    margin-bottom: 0;
+}
+
+/*Panel is another word for textarea in filepond. This class is predefined in filepond */
+.filepond--panel-root {
+    background-color: var(--form-input-background-color);
+    border: 1px solid var(--form-input-border-color);
+}
+
+.filepond--drop-label {
+    /*drop-label is a label that shows inside of the panel. It shows automatically*/
+    color: var(--color-text-light);
+    font-size: inherit;
+}

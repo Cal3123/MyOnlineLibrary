@@ -1,0 +1,18 @@
+<div class="notification">
+  <div class="notification-head">Notification Area: </div>  
+  <br> 
+  <br> 
+  Uploaded image should not be more than 500mb in size, and should have one of these
+  extensions: jpeg, jpg, jfif, pjpeg, pjp, svg, webp, avif, apng, png, gif
+  <br>
+  Upload files to cloud storage like google drive and inculde url in the description.
+  By clicking 'Create' you have agreed to share your book with everyone using this platfrom.
+</div>
+<h2 class="page-header">Edit Book</h2> 
+<form action="/books/<%= book.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+  <div class="form-row form-row-end btn-row">
+    <a class="btn btn-danger" href="/books">Cancel</a>
+    <button class="btn btn-primary" type="submit">Update</button>
+  </div>
+</form>
