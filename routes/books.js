@@ -17,7 +17,7 @@ const Author = require('../models/author')
 //multer allows our route to recieve a multipart data which could include a file
 //const multer = require("multer") **no longer needed due to file encode plugin of filepond 
 //an array that has all the different image types that we accept
-const imageMimeTypes = ['image/jpeg', 'image/jpg', 'image/jfif', 'image/pjpeg', 'image/pjp', 'image/svg', 'image/webp', 'image/avif', 'image/apng', 'image/png', 'images/gif'] //no longer to be used with multer  
+const imageMimeTypes = ['image/jpeg', 'image/jpg', 'image/jfif', 'image/pjpeg', 'image/pjp', 'image/svg', 'image/webp', 'image/avif', 'image/apng', 'image/png', 'image/gif'] //no longer to be used with multer  
 
 const bodyParser = require('body-parser')
 
